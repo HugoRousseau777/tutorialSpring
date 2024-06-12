@@ -13,7 +13,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-/* 
+
     @Bean
     public Customer customer(@Autowired String address) {
         return new Customer("Pickachu", address);
@@ -54,6 +54,6 @@ class Customer {
                 ", address='" + address + '\'' +
                 '}';
     }
-}*/
+}
 
 }
