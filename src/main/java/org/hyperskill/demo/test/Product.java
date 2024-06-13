@@ -1,11 +1,23 @@
 package org.hyperskill.demo.test;
 
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @Column(name = "product_id")
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "price")
     private int price;
+    @Column(name = "productMacro")
     @JsonManagedReference
     private ProductMacro productMacro;
 
