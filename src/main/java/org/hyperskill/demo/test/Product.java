@@ -6,24 +6,27 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
 public class Product {
     @Id
-    @Column(name = "product_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "price")
     private int price;
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "macro_id", referencedColumnName = "macro_id")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+   @PrimaryKeyJoinColumn
     private ProductMacro productMacro;
 
     public Product(){}

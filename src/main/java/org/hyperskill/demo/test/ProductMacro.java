@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -13,24 +17,36 @@ import jakarta.persistence.Table;
 public class ProductMacro {
 
     @Id
-    @Column(name = "macro_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
-
-
+    @OneToOne
+    @MapsId
     @JsonBackReference
-    @OneToOne(mappedBy = "productMacro")
+    @JoinColumn(name ="prod_id")
     private Product product;
 
+    @Column(name = "calories")
     private int calories;
+    @Column(name = "proteins")
     private int proteins;
 
     public ProductMacro(){}
 
-    public ProductMacro(int calories, int proteins, Product product) {
+    public ProductMacro(Long id, int calories, int proteins, Product product) {
+        this.id = id;
         this.calories = calories;
         this.proteins = proteins;
         this.product = product;
+    }
+
+    public Long getId(){
+        return this.id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     public Integer getCalories(){

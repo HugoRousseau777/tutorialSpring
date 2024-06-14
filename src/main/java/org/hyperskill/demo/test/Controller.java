@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
+
+    private final ProductRepository productRepository;
+    @Autowired
+    public Controller(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    @PostMapping("/add") // with body
+    public void addNewProduct(@RequestBody Product product) {
+    /*     Optional<Product> productOptional = productRepository
+                .findById(product.getId());
+        if(productOptional.isPresent()) {
+            throw new IllegalStateException("Product already there !");
+        }*/
+        productRepository.save(product);
+    }
+
+    @GetMapping("/get") 
+    public List<Product> getTheProducts(){
+        return productRepository.findAll();
+    }
+
+
 
 
 
