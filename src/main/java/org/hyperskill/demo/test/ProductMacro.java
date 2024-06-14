@@ -2,8 +2,24 @@ package org.hyperskill.demo.test;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="macros")
 public class ProductMacro {
+
+    @Id
+    @Column(name = "macro_id", unique = true)
+    private Long id;
+
+
+
     @JsonBackReference
+    @OneToOne(mappedBy = "productMacro")
     private Product product;
 
     private int calories;

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
+
+
     @GetMapping("/test")
     public int returnOne() {
         return 1;
@@ -36,6 +38,11 @@ public class Controller {
        productArrayList.add(product);
        return productArrayList;
     }
+
+
+
+
+
 
     @PostMapping("/productBMany")
     public ArrayList<Product> userStatus(@RequestBody List<Product> productList) {
