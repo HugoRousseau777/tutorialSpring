@@ -26,16 +26,36 @@ public class Product {
     private int price;
     @JsonManagedReference
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-   @PrimaryKeyJoinColumn
-    private ProductMacro productMacro;
+    @PrimaryKeyJoinColumn
+    private PM PM;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private PV PV;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private PMin PMin;
 
     public Product(){}
 
-    public Product(Long id, String name, int price, ProductMacro productMacro) {
+    public Product(Long id, String name, int price, PM PM, PV PV, PMin PMin) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.productMacro = productMacro;
+        this.PM = PM;
+        this.PV = PV;
+        this.PMin = PMin;
+    }
+
+    public Product(String name, int price, PM PM, PV PV, PMin PMin) {
+        this.name = name;
+        this.price = price;
+        this.PM = PM;
+        this.PV = PV;
+        this.PMin = PMin;
     }
 
     public Long getId(){
@@ -62,12 +82,25 @@ public class Product {
         this.price = price;
     }
 
-    public ProductMacro getProductMacro(){
-        return this.productMacro;
+    public PM getPM(){
+        return this.PM;
+    }
+    public void setPM(PM PM){
+        this.PM = PM;
     }
 
-    public void setProductMacro(ProductMacro productMacro){
-        this.productMacro = productMacro;
+    public PV getPV(){
+        return this.PV;
+    }
+    public void setPV(PV PV){
+        this.PV = PV;
+    }
+
+    public PMin getPMin(){
+        return this.PMin;
+    }
+    public void setPMin(PMin PMin){
+        this.PMin = PMin;
     }
 
 }
