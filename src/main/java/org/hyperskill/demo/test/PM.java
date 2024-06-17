@@ -2,30 +2,29 @@ package org.hyperskill.demo.test;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="macros")
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@Table(name="pm")
 public class PM {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @MapsId
-    @JsonBackReference
-    @JoinColumn(name ="prod_id")
+    @OneToOne(mappedBy = "pm", cascade = CascadeType.ALL) 
+    @JoinColumn(name = "productId", referencedColumnName = "id")
     private Product product;
 
     @Column(name="mass")

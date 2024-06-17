@@ -1,61 +1,63 @@
 package org.hyperskill.demo.test;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 @Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
+
     @Column(name = "name")
     private String name;
     @Column(name = "price")
     private int price;
-    @JsonManagedReference
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private PM PM;
+    
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private PV PV;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name= "pm_id", referencedColumnName = "id", nullable=true)
+    private PM pm;
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private PMin PMin;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name= "pv_id", referencedColumnName = "id", nullable=true)
+    private PV pv;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name= "pmin_id", referencedColumnName = "id", nullable=true)
+    private PMin pmin;
 
     public Product(){}
 
-    public Product(Long id, String name, int price, PM PM, PV PV, PMin PMin) {
+    public Product(Long id, String name, int price, PM pm, PV pv, PMin pmin) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.PM = PM;
-        this.PV = PV;
-        this.PMin = PMin;
+        this.pm = pm;
+        this.pv = pv;
+        this.pmin = pmin;
     }
 
-    public Product(String name, int price, PM PM, PV PV, PMin PMin) {
+    public Product(String name, int price, PM pm, PV pv, PMin pmin) {
         this.name = name;
         this.price = price;
-        this.PM = PM;
-        this.PV = PV;
-        this.PMin = PMin;
+        this.pm = pm;
+        this.pv = pv;
+        this.pmin = pmin;
     }
 
     public Long getId(){
@@ -83,24 +85,24 @@ public class Product {
     }
 
     public PM getPM(){
-        return this.PM;
+        return this.pm;
     }
-    public void setPM(PM PM){
-        this.PM = PM;
+    public void setPM(PM pm){
+        this.pm = pm;
     }
 
     public PV getPV(){
-        return this.PV;
+        return this.pv;
     }
-    public void setPV(PV PV){
-        this.PV = PV;
+    public void setPV(PV pv){
+        this.pv = pv;
     }
 
     public PMin getPMin(){
-        return this.PMin;
+        return this.pmin;
     }
-    public void setPMin(PMin PMin){
-        this.PMin = PMin;
+    public void setPMin(PMin pmin){
+        this.pmin = pmin;
     }
 
 }

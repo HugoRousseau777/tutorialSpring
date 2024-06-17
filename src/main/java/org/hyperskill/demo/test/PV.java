@@ -1,29 +1,28 @@
 package org.hyperskill.demo.test;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="vitamins")
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@Table(name="pv")
 public class PV {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @MapsId
-    @JsonBackReference
-    @JoinColumn(name ="prod_id")
+    @OneToOne(mappedBy = "pv", cascade = CascadeType.ALL) 
+    @JoinColumn(name = "prod_id", referencedColumnName = "id")
     private Product product;
 
     @Column(name= "a")
