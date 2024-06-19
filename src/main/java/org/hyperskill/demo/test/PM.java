@@ -48,10 +48,10 @@ public class PM {
     @Column(name="satu")
     private int satu;
 
-    @Column(name="dietaryFibre", precision = 3, scale = 1)
+    @Column(name="dietaryFibre", precision = 4, scale = 1)
     private BigDecimal fib;
 
-    @Column(name="sodium", precision = 3, scale = 1)
+    @Column(name="sodium", precision = 4, scale = 1)
     private BigDecimal sod;
 
     public PM(){}

@@ -27,6 +27,8 @@ public class Product {
     private String name;
     @Column(name = "price")
     private int price;
+    @Column(name = "img")
+    private String img;
     
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -43,21 +45,23 @@ public class Product {
 
     public Product(){}
 
-    public Product(Long id, String name, int price, PM pm, PV pv, PMin pmin) {
+    public Product(Long id, String name, int price, PM pm, PV pv, PMin pmin, String img) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.pm = pm;
         this.pv = pv;
         this.pmin = pmin;
+        this.img = img;
     }
 
-    public Product(String name, int price, PM pm, PV pv, PMin pmin) {
+    public Product(String name, int price, PM pm, PV pv, PMin pmin, String img) {
         this.name = name;
         this.price = price;
         this.pm = pm;
         this.pv = pv;
         this.pmin = pmin;
+        this.img = img;
     }
 
     public Long getId(){
@@ -103,6 +107,13 @@ public class Product {
     }
     public void setPMin(PMin pmin){
         this.pmin = pmin;
+    }
+
+    public String getImg(){
+        return this.img;
+    }
+    public void setImg(String img){
+        this.img = img;
     }
 
 }
