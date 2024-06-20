@@ -1,12 +1,12 @@
 export class Pmin {
     id!: number;
-    calcium!: number;
-    cuivre!: number;
+    cal!: number;
+    cui!: number;
     fer!: number;
     mag!: number;
-    phos!: number;
+    pho!: number;
     pot!: number;
-    zinc!: number
+    zin!: number
 constructor() {
 // No assignment or initialization needed
 }

@@ -24,4 +24,7 @@ export class ProductListComponent implements OnInit {
       console.log(data);
     })
   }
+  details(id: number){
+    this.router.navigate(['', id]);
+  }
 }
