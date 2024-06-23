@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Product } from './product';
 
 
@@ -13,8 +13,19 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-    getProductsList(): Observable<Product[]>{
-      return this.httpClient.get<Product[]>(`${this.baseURL}product`);
+
+
+      getProductsList(params: string): Observable<Product[]>{
+        if(params.length>2){
+          return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
+            params: {
+              categoriePlat: params
+            }
+          }).pipe(
+          map((product : any)=> product));
+        } else {
+          return this.httpClient.get<Product[]>(`${this.baseURL}product`);
+        }
       }
 
       getProduct(id: Number): Observable<Product>{

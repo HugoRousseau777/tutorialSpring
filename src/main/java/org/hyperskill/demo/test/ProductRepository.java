@@ -3,6 +3,7 @@ package org.hyperskill.demo.test;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.hyperskill.demo.test.domain.CategoriePlat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,18 +11,36 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 
+
+    public List<Product> findByCategoriePlat
+    (CategoriePlat categoriePlat);
+    // 1 PM //
     public List<Product> findByPmCaloBetween
     (Integer minCalo, Integer maxCalo);
+    public List<Product> findByPmCarbBetween
+    (Integer minCarb, Integer maxCarb);
+    public List<Product> findByPmSugBetween
+    (Integer minSug, Integer maxSug);
+    public List<Product> findByPmFatBetween
+    (Integer minFat, Integer maxFat);
+    public List<Product> findByPmSatuBetween
+    (Integer minSatu, Integer maxSatu);
+    public List<Product> findByPmProtBetween
+    (Integer minProt, Integer maxProt);
+    public List<Product> findByPmFibBetween
+    (BigDecimal minFib, BigDecimal maxFib);
+    public List<Product> findByPmSodBetween
+    (BigDecimal minSod, BigDecimal maxSod);
 
 
-    //8 PM
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetweenAndPmFibBetweenAndPmSodBetween
+    //8 PM //
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetweenAndPmFibBetweenAndPmSodBetween //
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug,
     Integer minProt, Integer maxProt, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
     //7 PM Ok
 
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetweenAndPmFibBetween
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetweenAndPmFibBetween //
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug,
     Integer minProt, Integer maxProt, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetweenAndPmSodBetween
@@ -51,16 +70,10 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 
 
 
-
-
-
-
-
-
     //6 PM OK
 
     //3
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetween
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmSatuBetween //
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
     Integer minSug, Integer maxSug, Integer minProt, Integer maxProt, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetweenAndPmFibBetween
@@ -164,7 +177,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 
     //5 PM All Done !
     //4
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetween
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmFatBetween //
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
     Integer minSug, Integer maxSug, Integer minProt, Integer maxProt, Integer minFat, Integer maxFat);
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetweenAndPmSatuBetween
@@ -366,10 +379,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     (Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt,
     Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
-//
-
-
-
     public List<Product> findByPmCarbBetweenAndPmFatBetweenAndPmSatuBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, Integer minFat, Integer maxFat,
     Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
@@ -401,7 +410,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     //4 PM ALL Done
     
     //5
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetween
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmProtBetween //
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
     Integer minSug, Integer maxSug, Integer minProt, Integer maxProt);
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetweenAndPmFatBetween
@@ -680,12 +689,9 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     (Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu,
     BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
-
-
-
-    //Triple PM ALL good
-    // 6
-    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetween
+    //Triple PM ALL good //
+    // 6 //
+    public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSugBetween // 
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug);
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmProtBetween
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt);
@@ -698,8 +704,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCaloBetweenAndPmCarbBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, BigDecimal minSod, BigDecimal maxSod);
 
-    //5
-    public List<Product> findByPmCaloBetweenAndPmSugBetweenAndPmProtBetween
+    //5 //
+    public List<Product> findByPmCaloBetweenAndPmSugBetweenAndPmProtBetween //
     (Integer minCalo, Integer maxCalo, Integer minSug, Integer maxSug, Integer minProt, Integer maxProt);
     public List<Product> findByPmCaloBetweenAndPmSugBetweenAndPmFatBetween
     (Integer minCalo, Integer maxCalo, Integer minSug, Integer maxSug, Integer minFat, Integer maxFat);
@@ -710,8 +716,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCaloBetweenAndPmSugBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, Integer minSug, Integer maxSug, BigDecimal minSod, BigDecimal maxSod);
 
-    //4
-    public List<Product> findByPmCaloBetweenAndPmProtBetweenAndPmFatBetween
+    //4 //
+    public List<Product> findByPmCaloBetweenAndPmProtBetweenAndPmFatBetween //
     (Integer minCalo, Integer maxCalo, Integer minProt, Integer maxProt, Integer minFat, Integer maxFat);
     public List<Product> findByPmCaloBetweenAndPmProtBetweenAndPmSatuBetween
     (Integer minCalo, Integer maxCalo, Integer minProt, Integer maxProt, Integer minSatu, Integer maxSatu);
@@ -720,27 +726,26 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCaloBetweenAndPmProtBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, Integer minProt, Integer maxProt, BigDecimal minSod, BigDecimal maxSod);
 
-    //3
-    public List<Product> findByPmCaloBetweenAndPmFatBetweenAndPmSatuBetween
+    //3 //
+    public List<Product> findByPmCaloBetweenAndPmFatBetweenAndPmSatuBetween //
     (Integer minCalo, Integer maxCalo, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmCaloBetweenAndPmFatBetweenAndPmFibBetween
     (Integer minCalo, Integer maxCalo, Integer minFat, Integer maxFat, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmCaloBetweenAndPmFatBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, Integer minFat, Integer maxFat, BigDecimal minSod, BigDecimal maxSod);
 
-    //2
-    public List<Product> findByPmCaloBetweenAndPmSatuBetweenAndPmFibBetween
+    //2 //
+    public List<Product> findByPmCaloBetweenAndPmSatuBetweenAndPmFibBetween //
     (Integer minCalo, Integer maxCalo, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
-    public List<Product> findByPmCaloBetweenAndPmSatuBetweenAndPmSodBetween
+    public List<Product> findByPmCaloBetweenAndPmSatuBetweenAndPmSodBetween //
     (Integer minCalo, Integer maxCalo, Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-    //1
+    //1 //
     public List<Product> findByPmCaloBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
     
     
-
-    //5
+    //5 //
     public List<Product> findByPmCarbBetweenAndPmSugBetweenAndPmProtBetween
     (Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug, Integer minProt, Integer maxProt);
     public List<Product> findByPmCarbBetweenAndPmSugBetweenAndPmFatBetween
@@ -753,7 +758,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     (Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug, BigDecimal minSod, BigDecimal maxSod);
 
 
-    //4
+    //4 //
     public List<Product> findByPmCarbBetweenAndPmProtBetweenAndPmFatBetween
     (Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt, Integer minFat, Integer maxFat);
     public List<Product> findByPmCarbBetweenAndPmProtBetweenAndPmSatuBetween
@@ -763,7 +768,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCarbBetweenAndPmProtBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt, BigDecimal minSod, BigDecimal maxSod);
 
-    //3
+    //3 //
     public List<Product> findByPmCarbBetweenAndPmFatBetweenAndPmSatuBetween
     (Integer minCarb, Integer maxCarb, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmCarbBetweenAndPmFatBetweenAndPmFibBetween
@@ -771,17 +776,17 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCarbBetweenAndPmFatBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, Integer minFat, Integer maxFat, BigDecimal minSod, BigDecimal maxSod);
 
-    //2
+    //2 //
     public List<Product> findByPmCarbBetweenAndPmSatuBetweenAndPmFibBetween
     (Integer minCarb, Integer maxCarb, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmCarbBetweenAndPmSatuBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-    //1
+    //1 //
     public List<Product> findByPmCarbBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
-    //4
+    //4 //
     public List<Product> findByPmSugBetweenAndPmProtBetweenAndPmFatBetween
     (Integer minSug, Integer maxSug, Integer minProt, Integer maxProt, Integer minFat, Integer maxFat);
     public List<Product> findByPmSugBetweenAndPmProtBetweenAndPmSatuBetween
@@ -791,8 +796,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmSugBetweenAndPmProtBetweenAndPmSodBetween
     (Integer minSug, Integer maxSug, Integer minProt, Integer maxProt, BigDecimal minSod, BigDecimal maxSod);
 
-
-    //3
+    //3 //
     public List<Product> findByPmSugBetweenAndPmFatBetweenAndPmSatuBetween
     (Integer minSug, Integer maxSug, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmSugBetweenAndPmFatBetweenAndPmFibBetween
@@ -800,19 +804,17 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmSugBetweenAndPmFatBetweenAndPmSodBetween
     (Integer minSug, Integer maxSug, Integer minFat, Integer maxFat, BigDecimal minSod, BigDecimal maxSod);
 
-
-    //2
+    //2 //
     public List<Product> findByPmSugBetweenAndPmSatuBetweenAndPmFibBetween
     (Integer minSug, Integer maxSug, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmSugBetweenAndPmSatuBetweenAndPmSodBetween
     (Integer minSug, Integer maxSug, Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-
-    //1
+    //1 //
     public List<Product> findByPmSugBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minSug, Integer maxSug, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
-    //3
+    //3 //
     public List<Product> findByPmProtBetweenAndPmFatBetweenAndPmSatuBetween
     (Integer minProt, Integer maxProt, Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmProtBetweenAndPmFatBetweenAndPmFibBetween
@@ -820,36 +822,31 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmProtBetweenAndPmFatBetweenAndPmSodBetween
     (Integer minProt, Integer maxProt, Integer minFat, Integer maxFat, BigDecimal minSod, BigDecimal maxSod);
 
-    //2
+    //2 //
     public List<Product> findByPmProtBetweenAndPmSatuBetweenAndPmFibBetween
     (Integer minProt, Integer maxProt, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmProtBetweenAndPmSatuBetweenAndPmSodBetween
     (Integer minProt, Integer maxProt, Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-    //1
+    //1 //
     public List<Product> findByPmProtBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
-    //2
+    //2 //
     public List<Product> findByPmFatBetweenAndPmSatuBetweenAndPmFibBetween
     (Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmFatBetweenAndPmSatuBetweenAndPmSodBetween
     (Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-
-    //1
+    //1 //
     public List<Product> findByPmFatBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minFat, Integer maxFat, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
-    //1
+    //1 //
     public List<Product> findByPmSatuBetweenAndPmFibBetweenAndPmSodBetween
     (Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
 
-
-
-
-
-    // Double PM Ok
+    // Double PM Ok //
     //7 Dans Controller
     public List<Product> findByPmCaloBetweenAndPmCarbBetween
     (Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb);
@@ -866,8 +863,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCaloBetweenAndPmSodBetween
     (Integer minCalo, Integer maxCalo, BigDecimal minSod, BigDecimal maxSod);
 
-    //6
-    public List<Product> findByPmCarbBetweenAndPmSugBetween
+    //6 //
+    public List<Product> findByPmCarbBetweenAndPmSugBetween //
     (Integer minCarb, Integer maxCarb, Integer minSug, Integer maxSug);
     public List<Product> findByPmCarbBetweenAndPmProtBetween
     (Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt);
@@ -880,7 +877,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmCarbBetweenAndPmSodBetween
     (Integer minCarb, Integer maxCarb, BigDecimal minSod, BigDecimal maxSod);
 
-    //5
+    //5 //
     public List<Product> findByPmSugBetweenAndPmProtBetween
     (Integer minSug, Integer maxSug, Integer minProt, Integer maxProt);
     public List<Product> findByPmSugBetweenAndPmFatBetween
@@ -892,7 +889,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmSugBetweenAndPmSodBetween
     (Integer minSug, Integer maxSug, BigDecimal minSod, BigDecimal maxSod);
 
-    //4
+    //4 //
     public List<Product> findByPmProtBetweenAndPmFatBetween
     (Integer minProt, Integer maxProt, Integer minFat, Integer maxFat);
     public List<Product> findByPmProtBetweenAndPmSatuBetween
@@ -902,7 +899,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmProtBetweenAndPmSodBetween
     (Integer minProt, Integer maxProt, BigDecimal minSod, BigDecimal maxSod);
 
-    //3
+    //3 //
     public List<Product> findByPmFatBetweenAndPmSatuBetween
     (Integer minFat, Integer maxFat, Integer minSatu, Integer maxSatu);
     public List<Product> findByPmFatBetweenAndPmFibBetween
@@ -910,15 +907,15 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByPmFatBetweenAndPmSodBetween
     (Integer minFat, Integer maxFat, BigDecimal minSod, BigDecimal maxSod);
 
-    //2
+    //2 //
     public List<Product> findByPmSatuBetweenAndPmFibBetween
     (Integer minSatu, Integer maxSatu, BigDecimal minFib, BigDecimal maxFib);
     public List<Product> findByPmSatuBetweenAndPmSodBetween
     (Integer minSatu, Integer maxSatu, BigDecimal minSod, BigDecimal maxSod);
 
-    //1
+    //1 //
     public List<Product> findByPmFibBetweenAndPmSodBetween
-    (Integer minFib, Integer maxFib, BigDecimal minSod, BigDecimal maxSod);
+    (BigDecimal minFib, BigDecimal maxFib, BigDecimal minSod, BigDecimal maxSod);
 
 
 
