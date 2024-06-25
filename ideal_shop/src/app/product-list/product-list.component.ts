@@ -18,8 +18,6 @@ export class ProductListComponent implements OnInit {
   pv: Pv = new Pv;
 
 
-
-
   junkClicked: Boolean = false;
   entreeClicked: Boolean = false;
   legumeClicked: Boolean = false;
@@ -28,6 +26,15 @@ export class ProductListComponent implements OnInit {
   fruitClicked: Boolean = false;
   dessertClicked: Boolean = false;
 
+  minCalo: number = 0;
+  maxCalo: number = 0;
+  minCarb: number = 0;
+  maxCarb: number = 0;
+  minProt: number = 0;
+  maxProt: number = 0;
+  minFib: number = 0;
+  maxFib: number = 0;
+
   constructor(private productService: ProductService,
     private router: Router
   ) {  }
@@ -35,6 +42,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts("");
   }
+
   getProducts(params: string){
     this.productService.getProductsList(params).subscribe(data => {
       this.products = data;
@@ -43,6 +51,13 @@ export class ProductListComponent implements OnInit {
   }
   details(id: number){
     this.router.navigate(['', id]);
+  }
+
+  getProductsListPM(catPlat: string, minCalo: number, maxCalo: number, minCarb: number, maxCarb: number, minProt: number, maxProt: number, minFib: number, maxFib: number){
+    this.productService.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      console.log(this.minCalo, this.maxCalo, catPlat);
+    })
   }
 
 changeButtons(){

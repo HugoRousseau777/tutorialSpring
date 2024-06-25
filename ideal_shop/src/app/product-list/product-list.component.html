@@ -32,65 +32,58 @@
 
     <button>Submit</button>
 </form>
-<form class="macroForm" *ngIf="junkClicked || entreeClicked || platClicked || dessertClicked" >
+<form (ngSubmit) = "getProductsListPM('plat',minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt, minFib, maxFib)" class="macroForm" *ngIf="junkClicked || entreeClicked || platClicked || dessertClicked" >
     <h3>Nutriments pour 100g</h3>
     <div>
         <h4>Calories</h4>
-        <label for="caloMin">Au minimum :</label>
-        <input id="caloMin" type="number" name="caloMin" [(ngModel)] = "pm.calo">
-        <label for="caloMax">Au maximum :</label>
-        <input id="caloMax" type="number" name="caloMax" [(ngModel)] = "pm.calo">
+        <label for="minCalo">Au minimum :</label>
+        <input id="minCalo" type="number" name="minCalo" [(ngModel)]="minCalo">
+        <label for="maxCalo">Au maximum :</label>
+        <input id="maxCalo" type="number" name="maxCalo" [(ngModel)]="maxCalo">
     </div>
     <div>
         <h4>Glucides</h4>
-        <label for="carbMin">Au minimum :</label>
-        <input id="carbMin" type="number" name="carbMin" [(ngModel)] = "pm.carb">
-        <label for="carbMax">Au maximum :</label>
-        <input id="carbMax" type="number" name="carbMax" [(ngModel)] = "pm.carb">
+        <label for="minCarb">Au minimum :</label>
+        <input id="minCarb" type="number" name="minCarb" [(ngModel)]="minCarb">
+        <label for="maxCarb">Au maximum :</label>
+        <input id="maxCarb" type="number" name="maxCarb" [(ngModel)]="maxCarb">
     </div>
-    <div>
-        <h4>Sucres</h4>
-        <label for="sugMin">Au minimum :</label>
-        <input id="sugMin" type="number" name="sugMin"[(ngModel)] = "pm.sug">
-        <label for="sugMax">Au maximum :</label>
-        <input id="sugMax" type="number" name="sugMax"[(ngModel)] = "pm.sug">
-    </div>
-    <div>
-        <h4>Matières grasses</h4>
-        <label for="fatMin">Au minimum :</label>
-        <input id="fatMin" type="number" name="fatMin" [(ngModel)] = "pm.fat">
-        <label for="fatMax">Au maximum:</label>
-        <input id="fatMax" type="number" name="fatMax" [(ngModel)] = "pm.fat">
-    </div>
-    <div>
-        <h4>Gras saturés</h4>
-        <label for="satuMin">Au minimum :</label>
-        <input id="satuMin" type="number" name="satuMin" [(ngModel)] = "pm.satu">
-        <label for="satuMax">Au maximum :</label>
-        <input id="satuMax" type="number" name="satuMax" [(ngModel)] = "pm.satu">
-    </div>
+
     <div>
         <h4>Protéines</h4>
-        <label for="protMin">Au minimum :</label>
-        <input id="protMin" type="number" name="protMin" [(ngModel)] = "pm.prot">
-        <label for="protMax">Au maximum :</label>
-        <input id="protMax" type="number" name="protMax" [(ngModel)] = "pm.prot">
+        <label for="minProt">Au minimum :</label>
+        <input id="minProt" type="number" name="minProt" [(ngModel)]="minProt">
+        <label for="maxProt">Au maximum :</label>
+        <input id="maxProt" type="number" name="maxProt" [(ngModel)]="maxProt">
     </div>
     <div>
         <h4>Fibres</h4>
-        <label for="fibMin">Au minimum :</label>
-        <input id="fibMin" type="number" name="fibMin" [(ngModel)] = "pm.fib">
-        <label for="fibMax">Au maximum :</label>
-        <input id="fibMax" type="number" name="fibMax" [(ngModel)] = "pm.fib">
+        <label for="minFib">Au minimum :</label>
+        <input id="minFib" type="number" name="minFib" [(ngModel)]="minFib">
+        <label for="maxFib">Au maximum :</label>
+        <input id="maxFib" type="number" name="maxFib" [(ngModel)]="maxFib">
+    </div>
+    <div>
+        <h4>Sucres</h4>
+        <p>Le moins possible dans tes produits ?</p>
+        <button>Clique ici !</button>
+    </div>
+    <div>
+        <h4>Matières grasses</h4>
+        <p>Le moins possible dans tes produits ?</p>
+        <button>Clique ici !</button>
+    </div>
+    <div>
+        <h4>Gras saturés</h4>
+        <p>Le moins possible dans tes produits ?</p>
+        <button>Clique ici !</button>
     </div>
     <div>
         <h4>Sel</h4>
-        <label for="sodMin">Au minimum :</label>
-        <input id="sodMin" type="number" name="sodMin" [(ngModel)] = "pm.sod">
-        <label for="sodMax">Au maximum :</label>
-        <input id="sodMax" type="number" name="sodMax" [(ngModel)] = "pm.sod">
+        <p>Le moins possible dans tes produits ?</p>
+        <button>Clique ici !</button>
     </div>
-    <button >Submit</button>
+    <button type="submit">Submit</button>
 </form>
 
 <div class="prodContainer">

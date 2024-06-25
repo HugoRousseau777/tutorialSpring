@@ -6,6 +6,7 @@ export class Product {
     id!: number;
     name!: string;
     price!: number;
+    catPlat!: string;
     img!: string;
     pm!: Pm;
     pmin!: Pmin;
