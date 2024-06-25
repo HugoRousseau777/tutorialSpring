@@ -37,9 +37,9 @@
     <div>
         <h4>Calories</h4>
         <label for="minCalo">Au minimum :</label>
-        <input id="minCalo" type="number" name="minCalo" [(ngModel)]="minCalo">
+        <input id="minCalo" type="number" name="minCalo"  [(ngModel)]="minCalo">
         <label for="maxCalo">Au maximum :</label>
-        <input id="maxCalo" type="number" name="maxCalo" [(ngModel)]="maxCalo">
+        <input id="maxCalo" type="number" name="maxCalo" [placeholder]='maximalCalo' [(ngModel)]="maxCalo">
     </div>
     <div>
         <h4>Glucides</h4>
@@ -63,37 +63,38 @@
         <label for="maxFib">Au maximum :</label>
         <input id="maxFib" type="number" name="maxFib" [(ngModel)]="maxFib">
     </div>
-    <div>
-        <h4>Sucres</h4>
-        <p>Le moins possible dans tes produits ?</p>
-        <button>Clique ici !</button>
-    </div>
-    <div>
-        <h4>Matières grasses</h4>
-        <p>Le moins possible dans tes produits ?</p>
-        <button>Clique ici !</button>
-    </div>
-    <div>
-        <h4>Gras saturés</h4>
-        <p>Le moins possible dans tes produits ?</p>
-        <button>Clique ici !</button>
-    </div>
-    <div>
-        <h4>Sel</h4>
-        <p>Le moins possible dans tes produits ?</p>
-        <button>Clique ici !</button>
-    </div>
+
+
     <button type="submit">Submit</button>
 </form>
+
+<div>
+    <h4>Sucres</h4>
+    <p>Le moins possible dans tes produits ?</p>
+    <button (click)="getProductsSugar('plat')">Clique ici !</button>
+</div>
+<div>
+    <h4>Matières grasses</h4>
+    <p>Le moins possible dans tes produits ?</p>
+    <button (click)="getProductsFat('plat')">Clique ici !</button>
+</div>
+<div>
+    <h4>Gras saturés</h4>
+    <p>Le moins possible dans tes produits ?</p>
+    <button (click)="getProductsSatu('plat')">Clique ici !</button>
+</div>
+<div>
+    <h4>Sel</h4>
+    <p>Le moins possible dans tes produits ?</p>
+    <button (click)="getProductsSodium('plat')">Clique ici !</button>
+</div>
 
 <div class="prodContainer">
     <div class="product" *ngFor = "let product of products">
         <div class="description">
         <img class="prodImg" src='{{ "/assets/img/" + product.img  }}'>
             <p>calo : {{product.pm.calo}}</p>
-            <p>carbo : {{product.pm.carb}}</p>
-            <p>protéines : {{product.pm.prot}}</p>
-            <p>fibres : {{product.pm.fib}}</p>
+          
             <p id="prodName">{{product.name}}</p> 
             <p id="prodMass">{{product.pm.mass >= 1000 ? product.pm.mass/1000 + " kg" : product.pm.mass + " g"}}</p>
             <p id="prodPrice">{{ product.price}} $ 

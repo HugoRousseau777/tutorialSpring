@@ -71,6 +71,47 @@ public class Controller {
         productRepository.deleteById(id);
     }
 
+    @CrossOrigin
+    @GetMapping("/sugar") 
+    public List<Product> getProductsBySugar(@RequestParam(name="catPlat", required = false) CategoriePlat catPlat) {
+        if(Objects.nonNull(catPlat)){
+            return productRepository.findByCategoriePlatOrderByPmSugAsc(catPlat);
+        } else {
+            return productRepository.findAll();
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/fat") 
+    public List<Product> getProductsByFat(@RequestParam(name="catPlat", required = false) CategoriePlat catPlat) {
+        if(Objects.nonNull(catPlat)){
+            return productRepository.findByCategoriePlatOrderByPmFatAsc(catPlat);
+        } else {
+            return productRepository.findAll();
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/satu") 
+    public List<Product> getProductsBySatu(@RequestParam(name="catPlat", required = false) CategoriePlat catPlat) {
+        if(Objects.nonNull(catPlat)){
+            return productRepository.findByCategoriePlatOrderByPmSatuAsc(catPlat);
+        } else {
+            return productRepository.findAll();
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/sod") 
+    public List<Product> getProductsBySodium(@RequestParam(name="catPlat", required = false) CategoriePlat catPlat) {
+        if(Objects.nonNull(catPlat)){
+            return productRepository.findByCategoriePlatOrderByPmSodAsc(catPlat);
+        } else {
+            return productRepository.findAll();
+        }
+    }
+
+ 
 
     @CrossOrigin
     @GetMapping("/PM")

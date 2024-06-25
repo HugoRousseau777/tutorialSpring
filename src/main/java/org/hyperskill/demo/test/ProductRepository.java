@@ -32,17 +32,24 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     (CategoriePlat catPlat, BigDecimal minFib, BigDecimal maxFib);
 
 
+    public List<Product> findByCategoriePlatOrderByPmFatAsc
+    (CategoriePlat catPlat);
+    public List<Product> findByCategoriePlatOrderByPmSatuAsc
+    (CategoriePlat catPlat);
+    public List<Product> findByCategoriePlatOrderByPmSugAsc
+    (CategoriePlat catPlat);
+    public List<Product> findByCategoriePlatOrderByPmSodAsc
+    (CategoriePlat catPlat);
+
+
     //4 PM ALL Done
 
     public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween 
     (CategoriePlat catPlat, Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
     Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
-    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetweenAndPmFibBetweenOrderByPmFatAscPmSugAsc
-    (CategoriePlat catPlat, Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
-    Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
-    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetweenAndPmFibBetweenOrderByPmSugAscPmFatAsc
-    (CategoriePlat catPlat, Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb,
-    Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
+
+
+
  
     //Triple PM ALL good 
     

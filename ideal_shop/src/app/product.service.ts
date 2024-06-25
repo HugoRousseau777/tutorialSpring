@@ -26,6 +26,44 @@ export class ProductService {
       }
   }
 
+  getProductsSugar(catPlat: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}sugar`, {
+      params: {
+        catPlat: catPlat,
+      }
+    }).pipe(
+        map((product : any)=> product));
+  }
+
+  getProductsFat(catPlat: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}fat`, {
+      params: {
+        catPlat: catPlat,
+      }
+    }).pipe(
+        map((product : any)=> product));
+  }
+
+  getProductsSatu(catPlat: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}satu`, {
+      params: {
+        catPlat: catPlat,
+      }
+    }).pipe(
+        map((product : any)=> product));
+  }
+
+  getProductsSodium(catPlat: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseURL}sod`, {
+      params: {
+        catPlat: catPlat,
+      }
+    }).pipe(
+        map((product : any)=> product));
+  }
+
+
+
   getProductsListPM(
       catPlat : string, 
       minCalo: number, maxCalo: number,
