@@ -32,36 +32,36 @@
 
     <button>Submit</button>
 </form>
-<form (ngSubmit) = "getProductsListPM('plat',minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt, minFib, maxFib)" class="macroForm" *ngIf="junkClicked || entreeClicked || platClicked || dessertClicked" >
+<form (ngSubmit) = "getProductsPm('plat')" class="macroForm" *ngIf="junkClicked || entreeClicked || platClicked || dessertClicked" >
     <h3>Nutriments pour 100g</h3>
     <div>
         <h4>Calories</h4>
         <label for="minCalo">Au minimum :</label>
-        <input id="minCalo" type="number" name="minCalo"  [(ngModel)]="minCalo">
+        <input id="minCalo" type="number" name="minCalo" [placeholder]='minimalCalo'  [(ngModel)]="minCalo">
         <label for="maxCalo">Au maximum :</label>
         <input id="maxCalo" type="number" name="maxCalo" [placeholder]='maximalCalo' [(ngModel)]="maxCalo">
     </div>
     <div>
         <h4>Glucides</h4>
         <label for="minCarb">Au minimum :</label>
-        <input id="minCarb" type="number" name="minCarb" [(ngModel)]="minCarb">
+        <input id="minCarb" type="number" name="minCarb" [placeholder]='minimalCarb' [(ngModel)]="minCarb">
         <label for="maxCarb">Au maximum :</label>
-        <input id="maxCarb" type="number" name="maxCarb" [(ngModel)]="maxCarb">
+        <input id="maxCarb" type="number" name="maxCarb" [placeholder]='maximalCarb' [(ngModel)]="maxCarb">
     </div>
 
     <div>
         <h4>Protéines</h4>
         <label for="minProt">Au minimum :</label>
-        <input id="minProt" type="number" name="minProt" [(ngModel)]="minProt">
+        <input id="minProt" type="number" name="minProt" [placeholder]='minimalProt' [(ngModel)]="minProt">
         <label for="maxProt">Au maximum :</label>
-        <input id="maxProt" type="number" name="maxProt" [(ngModel)]="maxProt">
+        <input id="maxProt" type="number" name="maxProt" [placeholder]='maximalProt' [(ngModel)]="maxProt">
     </div>
     <div>
         <h4>Fibres</h4>
         <label for="minFib">Au minimum :</label>
-        <input id="minFib" type="number" name="minFib" [(ngModel)]="minFib">
+        <input id="minFib" type="number" name="minFib" [placeholder]='minimalFib' [(ngModel)]="minFib">
         <label for="maxFib">Au maximum :</label>
-        <input id="maxFib" type="number" name="maxFib" [(ngModel)]="maxFib">
+        <input id="maxFib" type="number" name="maxFib" [placeholder]='maximalFib' [(ngModel)]="maxFib">
     </div>
 
 
