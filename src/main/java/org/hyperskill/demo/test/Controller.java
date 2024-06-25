@@ -72,7 +72,7 @@ public class Controller {
     }
 
 
-
+    @CrossOrigin
     @GetMapping("/PM")
     public List<Product> getByPMTest(
         @RequestParam(name = "catPlat", required = false) CategoriePlat catPlat,
@@ -87,10 +87,29 @@ public class Controller {
 
         if(Objects.nonNull(minCalo) && Objects.nonNull(maxCalo)){
             if(Objects.nonNull(minCarb) && Objects.nonNull(maxCarb)) {
+                if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
+                    if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
+                        return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween(
+                            catPlat, minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt, minFib, maxFib
+                        );
+                    }
+                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetween(
+                        catPlat, minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt // T
+                    );
+                } else if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
+                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmFibBetween(
+                        catPlat, minCalo, maxCalo, minCarb, maxCarb, minFib, maxFib // T
+                    );
+                }
                 return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetween(
                     catPlat, minCalo, maxCalo, minCarb, maxCarb // D
                 );
             } else if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
+                if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
+                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmProtBetweenAndPmFibBetween(
+                        catPlat, minCalo, maxCalo, minProt, maxProt, minFib, maxFib // T
+                    );
+                }
                 return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmProtBetween(
                     catPlat, minCalo, maxCalo, minProt, maxProt // D
                 );
@@ -103,6 +122,11 @@ public class Controller {
             return productRepository.findByCategoriePlatAndPmCaloBetween(catPlat, minCalo, maxCalo); // S
         } else if (Objects.nonNull(minCarb) && Objects.nonNull(maxCarb)){
             if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
+                if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
+                    return productRepository.findByCategoriePlatAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween(
+                        catPlat, minCarb, maxCarb, minProt, maxProt, minFib, maxFib // T
+                    );
+                }
                 return productRepository.findByCategoriePlatAndPmCarbBetweenAndPmProtBetween(
                     catPlat, minCarb, maxCarb, minProt, maxProt // D
                 );
@@ -128,93 +152,6 @@ public class Controller {
         }
             
     }
-
-    @GetMapping("/product/PM") 
-    public List<Product> getByPM(
-            @RequestParam(name = "catPlat", required = false) CategoriePlat catPlat,
-            @RequestParam(name = "minCalo", required = false) Integer minCalo,
-			@RequestParam(name = "maxCalo", required = false) Integer maxCalo,
-            @RequestParam(name = "minCarb", required = false) Integer minCarb,
-            @RequestParam(name = "maxCarb", required = false) Integer maxCarb,
-            @RequestParam(name = "minProt", required = false) Integer minProt,
-            @RequestParam(name = "maxProt", required = false) Integer maxProt,
-            @RequestParam(name = "minFib",required = false) BigDecimal minFib,
-            @RequestParam(name = "maxFib",required = false) BigDecimal maxFib,
-            @RequestParam(name = "sugFat",required = false) Boolean sugFat,
-            @RequestParam(name = "fatSug",required = false) Boolean fatSug){
-    if (Objects.nonNull(catPlat)) {
-        if(Objects.nonNull(minCalo) && Objects.nonNull(maxCalo)) {
-            if (Objects.nonNull(minCarb) && Objects.nonNull(maxCarb)) {
-                if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)){
-                    if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                        return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween(
-                            catPlat, minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt, minFib, maxFib
-                        );
-                    }
-                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetween(
-                        catPlat, minCalo, maxCalo, minCarb, maxCarb, minProt, maxProt
-                    );
-                } else if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)){
-                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmFibBetween(
-                        catPlat, minCalo, maxCalo, minCarb, maxCarb, minFib, maxFib
-                    );
-                }
-                return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmCarbBetween(
-                    catPlat, minCalo, maxCalo, minCarb, maxCarb
-                );
-            } else if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
-                if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                    return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmProtBetweenAndPmFibBetween(
-                        catPlat, minCalo, maxCalo, minProt, maxProt, minFib, maxFib
-                    );
-                }
-                return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmProtBetween(
-                    catPlat, minCalo, maxCalo, minProt, maxProt
-                );
-            } else if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                return productRepository.findByCategoriePlatAndPmCaloBetweenAndPmFibBetween(
-                    catPlat, minCalo, maxCalo, minFib, maxFib
-                );
-            }
-        return productRepository.findByCategoriePlatAndPmCaloBetween(
-            catPlat, minCalo, maxCalo
-        );
-        } else if(Objects.nonNull(minCarb) && Objects.nonNull(maxCarb)) {
-            if (Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
-                if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                    return productRepository.findByCategoriePlatAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween(
-                        catPlat, minCarb, maxCarb, minProt, maxProt, minFib, maxFib
-                    );
-                }
-                return productRepository.findByCategoriePlatAndPmCarbBetweenAndPmProtBetween(
-                    catPlat, minCarb, maxCarb, minProt, maxProt
-                );
-            } else if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                return productRepository.findByCategoriePlatAndPmCarbBetweenAndPmFibBetween(
-                    catPlat, minCarb, maxCarb, minFib, maxFib
-                );
-            }
-        return productRepository.findByCategoriePlatAndPmCarbBetween(
-            catPlat, minCarb, maxCarb
-        );
-        } else if(Objects.nonNull(minProt) && Objects.nonNull(maxProt)) {
-            if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-                return productRepository.findByCategoriePlatAndPmProtBetweenAndPmFibBetween(
-                    catPlat, minProt, maxProt, minFib, maxFib
-                );
-            }
-        return productRepository.findByCategoriePlatAndPmProtBetween(
-            catPlat, minProt, maxProt
-        );
-        } else if(Objects.nonNull(minFib) && Objects.nonNull(maxFib)) {
-            return productRepository.findByCategoriePlatAndPmFibBetween(
-                catPlat, minFib, maxFib
-            );
-        }
-   
-    }
-    return productRepository.findAll();
-}
 
     @GetMapping("/product/fatD") 
     public List<Product> getFatD(){

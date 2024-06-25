@@ -32,38 +32,39 @@ export class ProductService {
       minCarb: number, maxCarb: number,
       minProt: number, maxProt: number,
       minFib: number, maxFib: number): Observable<Product[]>{
-            
-      if(minCalo >0 && maxCalo>0) {
-          if (minCarb>0 && maxCarb>0) {
-              if (minProt>0 && maxProt>0) {
-                  if (minFib>0 && maxFib>0) {
-                      return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                          params: {
-                            catPlat: catPlat,
-                            minCalo: minCalo,
-                            maxCalo: maxCalo,
-                            minCarb: minCarb,
-                            maxCarb: maxCarb,
-                            minProt: minProt,
-                            maxProt: maxProt,
-                            minFib: minFib,
-                            maxFib: maxFib,
-                          }}).pipe(
-                          map((product : any)=> product));
-                        }
-                    return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                        params: {
-                          catPlat: catPlat,
-                          minCalo: minCalo,
-                          maxCalo: maxCalo,
-                          minCarb: minCarb,
-                          maxCarb: maxCarb,
-                          minProt: minProt,
-                          maxProt: maxProt
-                        }}).pipe(
-                          map((product : any)=> product));
-              } else if (minFib>0 && maxFib>0) {
-                return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
+        if(minCalo >= 0 && maxCalo > 0){
+          if(minCarb >= 0 && maxCarb > 0) {
+              if (minProt >= 0 && maxProt > 0) {
+                  if (minFib >= 0 && maxFib > 0) {
+                    return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                      params: {
+                        catPlat: catPlat,
+                        minCalo: minCalo,
+                        maxCalo: maxCalo,
+                        minCarb: minCarb,
+                        maxCarb: maxCarb,
+                        minProt: minProt,
+                        maxProt: maxProt,
+                        minFib: minFib,
+                        maxFib: maxFib
+                      }
+                    }).pipe(
+                        map((product : any)=> product));
+                  }
+                  return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                    params: {
+                      catPlat: catPlat,
+                      minCalo: minCalo,
+                      maxCalo: maxCalo,
+                      minCarb: minCarb,
+                      maxCarb: maxCarb,
+                      minProt: minProt,
+                      maxProt: maxProt
+                    }
+                  }).pipe(
+                      map((product : any)=> product));
+              } else if (minFib >= 0 && maxFib > 0) {
+                return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
                   params: {
                     catPlat: catPlat,
                     minCalo: minCalo,
@@ -72,151 +73,150 @@ export class ProductService {
                     maxCarb: maxCarb,
                     minFib: minFib,
                     maxFib: maxFib
-                  }}).pipe(
-                    map((product : any)=> product));
-                }
-          return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-              params: {
-                catPlat: catPlat,
-                minCalo: minCalo,
-                maxCalo: maxCalo,
-                minCarb: minCarb,
-                maxCarb: maxCarb,
-              }}).pipe(
-                  map((product : any)=> product));  
-          } else if (minFib > 0 && maxFib > 0){ 
-                return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                    params: {
-                      catPlat: catPlat,
-                      minCalo: minCalo,
-                      maxCalo: maxCalo,
-                      minFib: minFib,
-                      maxFib: maxFib
-                    }}).pipe(
-                        map((product : any)=> product));
-            }
-          return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-              params: {
-                catPlat: catPlat,
-                minCalo: minCalo,
-                maxCalo: maxCalo,
-              }}).pipe(
-                  map((product : any)=> product)); // OK
-            } else if (minProt >0 && maxProt >0) {
-                  if (minFib >0 && maxFib >0) {
-                      return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                          params: {
-                            catPlat: catPlat,
-                            minCalo: minCalo,
-                            maxCalo: maxCalo,
-                            minProt: minProt,
-                            maxProt: maxProt,
-                            minFib: minFib,
-                            maxFib: maxFib
-                          }}).pipe(
-                              map((product : any)=> product));
                   }
-                  return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                    params: {
-                      catPlat: catPlat,
-                      minCalo: minCalo,
-                      maxCalo: maxCalo,
-                      minProt: minProt,
-                      maxProt: maxProt
-                    }
-                  }).pipe(
-                      map((product : any)=> product));
-              } else if (minFib >0 && maxFib >0) {
-                return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
+                }).pipe(
+                    map((product : any)=> product));
+              }
+              return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                params: {
+                  catPlat: catPlat,
+                  minCalo: minCalo,
+                  maxCalo: maxCalo,
+                  minCarb: minCarb,
+                  maxCarb: maxCarb
+                }
+              }).pipe(
+                  map((product : any)=> product));
+          } else if (minProt >= 0 && maxProt > 0) {
+              if (minFib >= 0 && maxFib > 0) {
+                return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
                   params: {
                     catPlat: catPlat,
                     minCalo: minCalo,
                     maxCalo: maxCalo,
+                    minProt: minProt,
+                    maxProt: maxProt,
                     minFib: minFib,
                     maxFib: maxFib
                   }
                 }).pipe(
                     map((product : any)=> product));
-              } else if(minCarb >0 && maxCarb >0) {
-                if (minProt >0 && maxProt >0) {
-                    if (minFib >0 && maxFib >0) {
-                        return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                            params: {
-                              catPlat: catPlat,
-                              minCarb: minCarb,
-                              maxCarb: maxCarb,
-                              minProt: minProt,
-                              maxProt: maxProt,
-                              minFib: minFib,
-                              maxFib: maxFib
-                            }}).pipe(
-                                map((product : any)=> product));
-                      }
-                  return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-                      params: {
-                        catPlat: catPlat,
-                        minCarb: minCarb,
-                        maxCarb: maxCarb,
-                        minProt: minProt,
-                        maxProt: maxProt
-                      }}).pipe(
-                          map((product : any)=> product));
-        } else if (minFib >0 && maxFib >0) {
-          return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
+              }
+              return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                params: {
+                  catPlat: catPlat,
+                  minCalo: minCalo,
+                  maxCalo: maxCalo,
+                  minProt: minProt,
+                  maxProt: maxProt
+                }
+              }).pipe(
+                  map((product : any)=> product));
+          } else if (minFib >= 0 && maxFib > 0) {
+            return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+              params: {
+                catPlat: catPlat,
+                minCalo: minCalo,
+                maxCalo: maxCalo,
+                minFib: minFib,
+                maxFib: maxFib
+              }
+            }).pipe(
+                map((product : any)=> product));
+          }
+
+          return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
             params: {
               catPlat: catPlat,
-              minCarb: minCarb,
-              maxCarb: maxCarb,
-              minFib: minFib,
-              maxFib: maxFib
+              minCalo: minCalo,
+              maxCalo: maxCalo,
             }
           }).pipe(
               map((product : any)=> product));
-        }
-        return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-          params: {
-            catPlat: catPlat,
-            minCarb: minCarb,
-            maxCarb: maxCarb
+      } else if (minCarb >=0 && maxCarb >0){
+          if (minProt >=0 && maxProt >0) {
+              if (minFib >=0 && maxFib >0) {
+                return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                  params: {
+                    catPlat: catPlat,
+                    minCarb: minCarb,
+                    maxCarb: maxCarb,
+                    minProt: minProt,
+                    maxProt: maxProt,
+                    minFib: minFib,
+                    maxFib: maxFib
+                  }
+                }).pipe(
+                    map((product : any)=> product));
+              }
+              return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+                params: {
+                  catPlat: catPlat,
+                  minCarb: minCarb,
+                  maxCarb: maxCarb,
+                  minProt: minProt,
+                  maxProt: maxProt
+                }
+              }).pipe(
+                  map((product : any)=> product));
+          } else if (minFib >=0 && maxFib >0) {
+            return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+              params: {
+                catPlat: catPlat,
+                minCarb: minCarb,
+                maxCarb: maxCarb,
+                minFib: minFib,
+                maxFib: maxFib
+              }
+            }).pipe(
+                map((product : any)=> product));
           }
-        }).pipe(
-            map((product : any)=> product));
-    } else if(minProt >0 && maxProt >0) {
-      if (minFib >0 && maxFib >0) {
-        return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
+
+          return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+            params: {
+              catPlat: catPlat,
+              minCarb: minCarb,
+              maxCarb: maxCarb
+            }
+          }).pipe(
+              map((product : any)=> product));
+      } else if (minProt >= 0 && maxProt>0){
+          if (minFib >=0 && maxFib>0) {
+            return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+              params: {
+                catPlat: catPlat,
+                minProt: minProt,
+                maxProt: maxProt,
+                minFib: minFib,
+                maxFib: maxFib
+              }
+            }).pipe(
+                map((product : any)=> product));
+          }
+
+          return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+            params: {
+              catPlat: catPlat,
+              minProt: minProt,
+              maxProt: maxProt
+            }
+          }).pipe(
+              map((product : any)=> product));
+      } else if (minFib >=0 && maxFib >0){
+        return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
           params: {
             catPlat: catPlat,
-            minProt: minProt,
-            maxProt: maxProt,
             minFib: minFib,
             maxFib: maxFib
           }
         }).pipe(
             map((product : any)=> product));
+      } else {
+        return this.httpClient.get<Product[]>(`${this.baseURL}product`);
       }
-      return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-        params: {
-          catPlat: catPlat,
-          minProt: minProt,
-          maxProt: maxProt
-        }
-      }).pipe(
-          map((product : any)=> product));
-  }  else if(minFib >0 && maxFib >0) {
-    return this.httpClient.get<Product[]>(`${this.baseURL}productCat`, {
-      params: {
-        catPlat: catPlat,
-        minFib: minFib,
-        maxFib: maxFib
-      }
-    }).pipe(
-        map((product : any)=> product));
+          
   }
-
-                    
-          return this.httpClient.get<Product[]>(`${this.baseURL}productCat`).pipe(
-              map((product : any)=> product));
-      }
+  
       
   
 

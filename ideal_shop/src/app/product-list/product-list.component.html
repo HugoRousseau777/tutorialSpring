@@ -90,6 +90,10 @@
     <div class="product" *ngFor = "let product of products">
         <div class="description">
         <img class="prodImg" src='{{ "/assets/img/" + product.img  }}'>
+            <p>calo : {{product.pm.calo}}</p>
+            <p>carbo : {{product.pm.carb}}</p>
+            <p>protéines : {{product.pm.prot}}</p>
+            <p>fibres : {{product.pm.fib}}</p>
             <p id="prodName">{{product.name}}</p> 
             <p id="prodMass">{{product.pm.mass >= 1000 ? product.pm.mass/1000 + " kg" : product.pm.mass + " g"}}</p>
             <p id="prodPrice">{{ product.price}} $ 

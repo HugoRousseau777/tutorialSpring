@@ -45,14 +45,14 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
  
     //Triple PM ALL good 
-    // 6 //
-    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetween 
+    
+    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmProtBetween //
     (CategoriePlat categoriePlat, Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt);
-    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmFibBetween 
+    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmCarbBetweenAndPmFibBetween //
     (CategoriePlat categoriePlat, Integer minCalo, Integer maxCalo, Integer minCarb, Integer maxCarb, BigDecimal minFib, BigDecimal maxFib);
-    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmProtBetweenAndPmFibBetween
+    public List<Product> findByCategoriePlatAndPmCaloBetweenAndPmProtBetweenAndPmFibBetween //
     (CategoriePlat categoriePlat, Integer minCalo, Integer maxCalo, Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
-    public List<Product> findByCategoriePlatAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween
+    public List<Product> findByCategoriePlatAndPmCarbBetweenAndPmProtBetweenAndPmFibBetween //
     (CategoriePlat categoriePlat, Integer minCarb, Integer maxCarb, Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
 
     // Double PM 
@@ -68,7 +68,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
     public List<Product> findByCategoriePlatAndPmCarbBetweenAndPmFibBetween //
     (CategoriePlat categoriePlat, Integer minCarb, Integer maxCarb, BigDecimal minFib, BigDecimal maxFib);
 
-    public List<Product> findByCategoriePlatAndPmProtBetweenAndPmFibBetween
+    public List<Product> findByCategoriePlatAndPmProtBetweenAndPmFibBetween //
     (CategoriePlat categoriePlat, Integer minProt, Integer maxProt, BigDecimal minFib, BigDecimal maxFib);
 
 
