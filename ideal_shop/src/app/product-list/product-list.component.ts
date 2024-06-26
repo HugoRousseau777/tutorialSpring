@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pm } from '../pm';
 import { Product } from "../product";
@@ -46,18 +46,36 @@ export class ProductListComponent implements OnInit {
 
 
   constructor(private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {  }
 
   ngOnInit(): void {
     this.getProducts("");
-    //this.getMaxCalo("plat");
-    this.initMinMax();
+    
   }
-
 
   getProductsList(params: string){
     return this.productService.getProductsList(params);
+  }
+
+  getProducts(params: string){
+    this.productService.getProductsList(params).subscribe(data => {
+      this.products = data;
+      console.log(data);
+    })
+  }
+
+  details(id: number){
+    this.router.navigate(['', id]);
+  }
+
+  getProductsPm(catPlat: string){
+    this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      console.log(data);
+      this.getMinMax("plat");
+    })
   }
 
   getProductsListPM(catPlat: string, minCalo: number, maxCalo: number,
@@ -69,56 +87,7 @@ export class ProductListComponent implements OnInit {
       minFib, maxFib);
   }
 
-  initMinMax(){
-    this.getProductsList("plat").subscribe(data => {
-      let maxCalo = 0;
-      let minCalo = 10000;
-      let maxCarb = 0;
-      let minCarb = 10000; 
-      let maxProt = 0;
-      let minProt = 10000; 
-      let maxFib = 0;
-      let minFib = 10000; 
-      
-      for (let i=0; i<data.length; i++){
-        if(data[i].pm.calo > maxCalo) {
-          maxCalo = data[i].pm.calo
-        }
-        if(data[i].pm.calo < minCalo) {
-          minCalo = data[i].pm.calo
-        }
-        if(data[i].pm.carb > maxCarb) {
-          maxCarb = data[i].pm.carb
-        }
-        if(data[i].pm.carb < minCarb) {
-          minCarb = data[i].pm.carb
-        }
-        if(data[i].pm.prot > maxProt) {
-          maxProt = data[i].pm.prot
-        }
-        if(data[i].pm.prot < minProt) {
-          minProt = data[i].pm.prot
-        }
-        if(data[i].pm.fib > maxFib) {
-          maxFib = data[i].pm.fib
-        }
-        if(data[i].pm.fib < minFib) {
-          minFib = data[i].pm.fib
-        }
-  
-      }
-      this.maximalCalo = maxCalo;
-      this.minimalCalo = minCalo;
-      this.maximalCarb = maxCarb;
-      this.minimalCarb = minCarb;
-      this.maximalProt = maxProt;
-      this.minimalProt = minProt;
-      this.maximalFib = maxFib;
-      this.minimalFib = minFib;
-    })
-  }
-
- getMaxCalo(catPlat: string){
+ getMinMax(catPlat: string){
   this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
     let maxCalo = 0;
     let minCalo = 10000;
@@ -167,50 +136,13 @@ export class ProductListComponent implements OnInit {
   })
  }
   
-
-  getProducts(params: string){
-    this.productService.getProductsList(params).subscribe(data => {
-      this.products = data;
-      console.log(data);
-    })
-  }
-
-  getProductsPm(catPlat: string){
-    this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
-      console.log(data);
-      this.getMaxCalo("plat");
-    })
-  }
-    details(id: number){
-    this.router.navigate(['', id]);
-  }
-
-
   getProductsSugar(catPlat: string){
     this.productService.getProductsSugar(catPlat).subscribe(data => {
       this.products = data;
     })
   }
 
-  getProductsFat(catPlat: string){
-    this.productService.getProductsFat(catPlat).subscribe(data => {
-      this.products = data;
-    })
-  }
-
-  getProductsSatu(catPlat: string){
-    this.productService.getProductsSatu(catPlat).subscribe(data => {
-      this.products = data;
-    })
-  }
-
-  getProductsSodium(catPlat: string){
-    this.productService.getProductsSodium(catPlat).subscribe(data => {
-      this.products = data;
-    })
-  }
-
+ 
 changeButtons(){
   this.entreeClicked = false;
   this.legumeClicked = false;

@@ -8,7 +8,7 @@
     <li class="{{junkClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonJunk()" (click) = "junkClicked ? getProducts('junk') : getProducts('')">Junk</li>
     <li class="{{entreeClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonEntree()" (click) = "entreeClicked ? getProducts('entree') : getProducts('')">Entrées</li>
     <li class="{{legumeClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonLegume()"   (click) = "legumeClicked ? getProducts('legume') : getProducts('')">Légumes</li>
-    <li class="{{platClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonPlat()"  (click) = "platClicked ? getProducts('plat') : getProducts('')">Plat</li>
+    <li class="{{platClicked ? 'btn-change' : 'btn-default' }}" (click) = "getMinMax('plat')" (click) = "changeButtonPlat()"  (click) = "platClicked ? getProducts('plat') : getProducts('')">Plat</li>
     <li class="{{laitageClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonLaitage()"   (click) = "laitageClicked ? getProducts('laitage') : getProducts('')">Laitages</li>
     <li class="{{fruitClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonFruit()"  (click) = "fruitClicked ? getProducts('fruit') : getProducts('')">Fruits</li>
     <li class="{{dessertClicked ? 'btn-change' : 'btn-default' }}"  (click) = "changeButtonDessert()" (click) = "dessertClicked ? getProducts('dessert') : getProducts('')">Desserts</li>
@@ -68,26 +68,7 @@
     <button type="submit">Submit</button>
 </form>
 
-<div>
-    <h4>Sucres</h4>
-    <p>Le moins possible dans tes produits ?</p>
-    <button (click)="getProductsSugar('plat')">Clique ici !</button>
-</div>
-<div>
-    <h4>Matières grasses</h4>
-    <p>Le moins possible dans tes produits ?</p>
-    <button (click)="getProductsFat('plat')">Clique ici !</button>
-</div>
-<div>
-    <h4>Gras saturés</h4>
-    <p>Le moins possible dans tes produits ?</p>
-    <button (click)="getProductsSatu('plat')">Clique ici !</button>
-</div>
-<div>
-    <h4>Sel</h4>
-    <p>Le moins possible dans tes produits ?</p>
-    <button (click)="getProductsSodium('plat')">Clique ici !</button>
-</div>
+
 
 <div class="prodContainer">
     <div class="product" *ngFor = "let product of products">
