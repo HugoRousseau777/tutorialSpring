@@ -188,6 +188,8 @@ public class Controller {
             return productRepository.findByCategoriePlatAndPmProtBetween(catPlat, minProt, maxProt); // S
         } else if (Objects.nonNull(minFib) && Objects.nonNull(maxFib)){
             return productRepository.findByCategoriePlatAndPmFibBetween(catPlat, minFib, maxFib); // S
+        } else if (Objects.nonNull(catPlat)) {
+            return productRepository.findByCategoriePlat(catPlat);
         } else {
             return productRepository.findAll();
         }

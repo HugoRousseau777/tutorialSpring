@@ -64,13 +64,14 @@
         <input id="maxFib" type="number" name="maxFib" [placeholder]='maximalFib' [(ngModel)]="maxFib">
     </div>
 
+    <button (click)="sugarAsc()"></button>
 
     <button type="submit">Submit</button>
 </form>
 
 
 
-<div class="prodContainer">
+<div class="prodContainer" #prod>
     <div class="product" *ngFor = "let product of products">
         <div class="description">
         <img class="prodImg" src='{{ "/assets/img/" + product.img  }}'>

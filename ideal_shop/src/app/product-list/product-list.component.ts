@@ -14,6 +14,7 @@ import { Pv } from '../pv';
 export class ProductListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('trial') trial: any;
+  @ViewChild('prod') prod: any;
   constructor(private productService: ProductService,
     private router: Router,
     private renderer: Renderer2
@@ -21,15 +22,17 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getProducts("");
-    
+
   }
 
   ngAfterViewInit(): void {
       this.trial.nativeElement.style.color = "green";
+      
   }
 
 
   products!: Product[];
+  productList!: Product[];
 
   pm: Pm = new Pm;
   pv: Pv = new Pv;
@@ -68,7 +71,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   getProducts(params: string){
     this.productService.getProductsList(params).subscribe(data => {
       this.products = data;
-      console.log(data);
     })
   }
 
@@ -77,12 +79,34 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   getProductsPm(catPlat: string){
-    this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
       this.products = data;
-      console.log(data);
       this.getMinMax("plat");
     })
   }
+
+  sugarAsc() {
+    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      this.products.sort(this.compare);
+      
+      console.log(this.products);
+    })
+  }
+
+   compare( a:Product, b:Product ) {
+    if ( a.pm.sug < b.pm.sug ){
+      return -1;
+    }
+    if ( a.pm.sug > b.pm.sug ){
+      return 1;
+    }
+    return 0;
+  }
+
+
+
+
 
   getProductsListPM(catPlat: string, minCalo: number, maxCalo: number,
     minCarb: number, maxCarb: number, minProt: number, maxProt: number,

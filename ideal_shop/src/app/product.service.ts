@@ -222,6 +222,13 @@ export class ProductService {
           }
         }).pipe(
             map((product : any)=> product));
+      } else if (catPlat.length > 0) {
+        return this.httpClient.get<Product[]>(`${this.baseURL}PM`, {
+          params: {
+            catPlat: catPlat,
+          }
+        }).pipe(
+            map((product : any)=> product));
       } else {
         return this.httpClient.get<Product[]>(`${this.baseURL}product`);
       }
