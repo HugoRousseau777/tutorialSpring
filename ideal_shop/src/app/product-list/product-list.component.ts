@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pm } from '../pm';
 import { Product } from "../product";
@@ -11,7 +11,24 @@ import { Pv } from '../pv';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('trial') trial: any;
+  constructor(private productService: ProductService,
+    private router: Router,
+    private renderer: Renderer2
+  ) {  }
+
+  ngOnInit(): void {
+    this.getProducts("");
+    
+  }
+
+  ngAfterViewInit(): void {
+      this.trial.nativeElement.style.color = "green";
+  }
+
+
   products!: Product[];
 
   pm: Pm = new Pm;
@@ -43,17 +60,6 @@ export class ProductListComponent implements OnInit {
   minimalCarb!: number;
   maximalFib!: number;
   minimalFib!: number;
-
-
-  constructor(private productService: ProductService,
-    private router: Router,
-    private renderer: Renderer2
-  ) {  }
-
-  ngOnInit(): void {
-    this.getProducts("");
-    
-  }
 
   getProductsList(params: string){
     return this.productService.getProductsList(params);
