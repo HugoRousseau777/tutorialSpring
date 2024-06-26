@@ -89,7 +89,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
       this.products = data;
       this.products.sort(this.compare);
-      
       console.log(this.products);
     })
   }
