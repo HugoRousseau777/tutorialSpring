@@ -32,7 +32,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
 
   products!: Product[];
-  productList!: Product[];
 
   pm: Pm = new Pm;
   pv: Pv = new Pv;
@@ -69,10 +68,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   getProducts(params: string){
     this.productService.getProductsList(params).subscribe((data : Product[])=> {
       this.products = data;
-      console.log(this.products[0]);
     })
     this.getMinMax("plat");
-    
   }
 
   details(id: number){
@@ -81,65 +78,36 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   getProductsPm(catPlat: string){
       this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
+        if(this.SugarClicked == true) {
+          this.products = data.sort(this.compareSugar);
+        } else if(this.FatClicked == true) {
+          this.products = data.sort(this.compareFat);
+        } else if(this.SatuClicked == true) {
+          this.products = data.sort(this.compareSatu);
+        } else if(this.SodiumClicked == true) {
+          this.products = data.sort(this.compareFat);
+        } else {
+        this.products = data;
+      }
       this.getMinMax("plat");
     })
   }
 
-
-
-  ascSug() {
-         this.products.sort(this.compareSugar);
-         console.log(this.products[0]);
-      
-      
+  buttonSug(){
+    this.SugarClicked = !this.SugarClicked;
   }
- /*
-  ascSug() {
-    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
-      if(!this.SugarClicked && this.products.length) {
-        this.products.sort(this.compareSugar);
-      }
-      this.SugarClicked = !this.SugarClicked;
-    })
+  buttonFat(){
+    this.FatClicked = !this.FatClicked;
+  }
+  buttonSatu(){
+    this.SatuClicked = !this.SatuClicked;
+  }
+  buttonSod(){
+    this.SodiumClicked = !this.SodiumClicked;
   }
 
-  ascFat() {
-    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
-      if(!this.FatClicked) {
-        this.products.sort(this.compareFat);
-      }
-      console.log(this.products);
-      this.FatClicked = !this.FatClicked;
-    })
-  }
 
-  ascSatu() {
-    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
-      if (!this.SatuClicked) {
-        this.products.sort(this.compareSatu);
-      } 
-      console.log(this.products);
-      this.SatuClicked = !this.SatuClicked;
-    })
-  }
-
-  ascSod() {
-    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-      this.products = data;
-      if (!this.SodiumClicked) {
-        this.products.sort(this.compareSod);
-      } 
-      console.log(this.products);
-      this.SodiumClicked = !this.SodiumClicked;
-    })
-  }
-
-*/
-   compareSugar( a:Product, b:Product ) {
+  compareSugar( a:Product, b:Product ) {
     if ( a.pm.sug < b.pm.sug ){
       return -1;
     }
@@ -148,7 +116,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     }
     return 0;
   }
-/*
+
+
   compareFat( a:Product, b:Product ) {
     if ( a.pm.fat < b.pm.fat ){
       return -1;
@@ -179,7 +148,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     return 0;
   }
 
-*/
 
 
 
