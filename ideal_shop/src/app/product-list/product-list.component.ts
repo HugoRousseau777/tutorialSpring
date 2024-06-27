@@ -38,13 +38,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   pv: Pv = new Pv;
 
 
-  junkClicked: Boolean = false;
-  entreeClicked: Boolean = false;
-  legumeClicked: Boolean = false;
-  platClicked: Boolean = false;
-  laitageClicked: Boolean = false;
-  fruitClicked: Boolean = false;
-  dessertClicked: Boolean = false;
+
+  SatuClicked: Boolean = false;
+  FatClicked: Boolean = false;
+  SugarClicked: Boolean = false;
+  SodiumClicked: Boolean = false;
 
   minCalo: number;
   maxCalo: number;
@@ -69,9 +67,12 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   getProducts(params: string){
-    this.productService.getProductsList(params).subscribe(data => {
+    this.productService.getProductsList(params).subscribe((data : Product[])=> {
       this.products = data;
+      console.log(this.products[0]);
     })
+    this.getMinMax("plat");
+    
   }
 
   details(id: number){
@@ -85,15 +86,60 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  sugarAsc() {
+
+
+  ascSug() {
+         this.products.sort(this.compareSugar);
+         console.log(this.products[0]);
+      
+      
+  }
+ /*
+  ascSug() {
     this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
       this.products = data;
-      this.products.sort(this.compare);
-      console.log(this.products);
+      if(!this.SugarClicked && this.products.length) {
+        this.products.sort(this.compareSugar);
+      }
+      this.SugarClicked = !this.SugarClicked;
     })
   }
 
-   compare( a:Product, b:Product ) {
+  ascFat() {
+    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      if(!this.FatClicked) {
+        this.products.sort(this.compareFat);
+      }
+      console.log(this.products);
+      this.FatClicked = !this.FatClicked;
+    })
+  }
+
+  ascSatu() {
+    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      if (!this.SatuClicked) {
+        this.products.sort(this.compareSatu);
+      } 
+      console.log(this.products);
+      this.SatuClicked = !this.SatuClicked;
+    })
+  }
+
+  ascSod() {
+    this.getProductsListPM("plat", this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
+      this.products = data;
+      if (!this.SodiumClicked) {
+        this.products.sort(this.compareSod);
+      } 
+      console.log(this.products);
+      this.SodiumClicked = !this.SodiumClicked;
+    })
+  }
+
+*/
+   compareSugar( a:Product, b:Product ) {
     if ( a.pm.sug < b.pm.sug ){
       return -1;
     }
@@ -102,8 +148,38 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     }
     return 0;
   }
+/*
+  compareFat( a:Product, b:Product ) {
+    if ( a.pm.fat < b.pm.fat ){
+      return -1;
+    }
+    if ( a.pm.fat > b.pm.fat ){
+      return 1;
+    }
+    return 0;
+  }
 
+  compareSatu( a:Product, b:Product ) {
+    if ( a.pm.satu < b.pm.satu ){
+      return -1;
+    }
+    if ( a.pm.satu > b.pm.satu ){
+      return 1;
+    }
+    return 0;
+  }
 
+  compareSod( a:Product, b:Product ) {
+    if ( a.pm.sod < b.pm.sod ){
+      return -1;
+    }
+    if ( a.pm.sod > b.pm.sod ){
+      return 1;
+    }
+    return 0;
+  }
+
+*/
 
 
 
@@ -164,91 +240,25 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.minimalFib = minFib;
   })
  }
-  
-  getProductsSugar(catPlat: string){
-    this.productService.getProductsSugar(catPlat).subscribe(data => {
-      this.products = data;
-    })
-  }
 
- 
-changeButtons(){
-  this.entreeClicked = false;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
+  changeButtonsCat(x: number){
+      let array = Array.from(document.getElementsByClassName("cat"));
 
-changeButtonEntree(){
-  this.entreeClicked = !this.entreeClicked;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
+      if (array[x].className == "cat btn-default") {
+          this.getProducts(array[x].id);
+          
+          array[x].className = "cat btn-change";
+      } else {
+          array[x].className = "cat btn-default";
+          this.getProducts("");
+      }
 
-changeButtonLegume(){
-  this.legumeClicked = !this.legumeClicked;
-  this.entreeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
+      array.splice(x, 1);
+      array.forEach(element => {
+          element.className = "cat btn-default";
+      })
+      
+ }
+   
 
-changeButtonPlat(){
-  this.platClicked = !this.platClicked;
-  this.legumeClicked = false;
-  this.entreeClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
-
-changeButtonLaitage(){
-  this.laitageClicked = !this.laitageClicked;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.entreeClicked = false;
-  this.fruitClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
-
-changeButtonFruit(){
-  this.fruitClicked = !this.fruitClicked;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.entreeClicked = false;
-  this.dessertClicked = false;
-  this.junkClicked = false;
-}
-
-changeButtonDessert(){
-  this.dessertClicked = !this.dessertClicked;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.entreeClicked = false;
-  this.junkClicked = false;
-}
-
-changeButtonJunk(){
-  this.junkClicked = !this.junkClicked;
-  this.legumeClicked = false;
-  this.platClicked = false;
-  this.laitageClicked = false;
-  this.fruitClicked = false;
-  this.entreeClicked = false;
-  this.dessertClicked = false;
-}
 }

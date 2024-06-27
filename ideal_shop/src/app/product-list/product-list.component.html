@@ -1,21 +1,19 @@
-
-
 <p #trial>Trial</p>
 
 
 <nav>
 <ul class="navigationProduct">
-    <li class="{{junkClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonJunk()" (click) = "junkClicked ? getProducts('junk') : getProducts('')">Junk</li>
-    <li class="{{entreeClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonEntree()" (click) = "entreeClicked ? getProducts('entree') : getProducts('')">Entrées</li>
-    <li class="{{legumeClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonLegume()"   (click) = "legumeClicked ? getProducts('legume') : getProducts('')">Légumes</li>
-    <li class="{{platClicked ? 'btn-change' : 'btn-default' }}" (click) = "getMinMax('plat')" (click) = "changeButtonPlat()"  (click) = "platClicked ? getProducts('plat') : getProducts('')">Plat</li>
-    <li class="{{laitageClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonLaitage()"   (click) = "laitageClicked ? getProducts('laitage') : getProducts('')">Laitages</li>
-    <li class="{{fruitClicked ? 'btn-change' : 'btn-default' }}" (click) = "changeButtonFruit()"  (click) = "fruitClicked ? getProducts('fruit') : getProducts('')">Fruits</li>
-    <li class="{{dessertClicked ? 'btn-change' : 'btn-default' }}"  (click) = "changeButtonDessert()" (click) = "dessertClicked ? getProducts('dessert') : getProducts('')">Desserts</li>
+    <li class="cat btn-default" id="junk" (click) = "changeButtonsCat(0)">Junk</li>
+    <li class="cat btn-default" id="entree" (click) = "changeButtonsCat(1)">Entrées</li>
+    <li class="cat btn-default" id="legume" (click) = "changeButtonsCat(2)" >Légumes</li>
+    <li class="cat btn-default" id="plat" (click) = "changeButtonsCat(3)" >Plat</li>
+    <li class="cat btn-default" id="laitage" (click) = "changeButtonsCat(4)" >Laitages</li>
+    <li class="cat btn-default" id="fruit" (click) = "changeButtonsCat(5)" >Fruits</li>
+    <li class="cat btn-default" id="dessert" (click) = "changeButtonsCat(6)" >Desserts</li>
 </ul>
 </nav>
 
-<form *ngIf="legumeClicked || fruitClicked">
+<form>
     Nutrients
     <label for="a">vit A(%J Pour 100g):</label>
     <input id="a" type="number" name="a" [(ngModel)] = "pv.a">
@@ -23,7 +21,7 @@
     <input id="b" type="number" name="b" [(ngModel)] = "pv.b">
     <label for="c">vit C(%J Pour 100g):</label>
     <input id="c" type="number" name="c"[(ngModel)] = "pv.c">
-    <label for="d">vit D(%J Pour 100g):</label>
+    <label for="d">vit D(%Jarray  sorted Pour 100g):</label>
     <input id="d" type="number" name="d" [(ngModel)] = "pv.d">
     <label for="e">vit E(%J Pour 100g):</label>
     <input id="e" type="number" name="e" [(ngModel)] = "pv.e">
@@ -32,7 +30,7 @@
 
     <button>Submit</button>
 </form>
-<form (ngSubmit) = "getProductsPm('plat')" class="macroForm" *ngIf="junkClicked || entreeClicked || platClicked || dessertClicked" >
+<form (ngSubmit) = "getProductsPm('plat')" class="macroForm" >
     <h3>Nutriments pour 100g</h3>
     <div>
         <h4>Calories</h4>
@@ -64,7 +62,10 @@
         <input id="maxFib" type="number" name="maxFib" [placeholder]='maximalFib' [(ngModel)]="maxFib">
     </div>
 
-    <button (click)="sugarAsc()"></button>
+    <button (click)="ascSug()">Sugar</button>
+    <button >Fat</button>
+    <button >Satu</button>
+    <button >Sodium</button>
 
     <button type="submit">Submit</button>
 </form>
