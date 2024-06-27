@@ -52,6 +52,15 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   minFib: number;
   maxFib: number;
 
+  recMinCalo: number = 1000;
+  recMaxCalo: number = 0;
+  recMinCarb: number = 1000;
+  recMaxCarb: number = 0;
+  recMinProt: number = 1000;
+  recMaxProt: number = 0;
+  recMinFib: number = 1000;
+  recMaxFib: number = 0;
+
   maximalCalo!: number;
   minimalCalo!: number;
   maximalProt!: number;
@@ -76,6 +85,65 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.router.navigate(['', id]);
   }
 
+  onChangeminCal(value: any) { 
+    this.recMinCalo = value.target.value;
+    if (this.minCalo >= 0 && this.maxCalo > 0){
+      console.log("coucou");
+      console.log(this.minCalo);
+      console.log(this.maxCalo);
+      this.getProductsPm("plat");
+    } 
+} 
+
+  onChangemaxCal(value: any) { 
+  this.recMaxCalo = value.target.value;
+  if (this.minCalo >= 0 && this.maxCalo > 0){
+    this.getProductsPm("plat");
+  }  
+} 
+
+onChangeminCarb(value: any) { 
+  this.recMinCarb = value.target.value;
+  if (this.recMinCarb >= 0 && this.recMaxCarb > 0){
+    this.getProductsPm("plat");
+  } 
+} 
+
+onChangemaxCarb(value: any) { 
+this.recMaxCarb = value.target.value;
+if (this.recMinCarb >= 0 && this.recMaxCarb > 0){
+  this.getProductsPm("plat");
+}  
+} 
+
+onChangeminProt(value: any) { 
+  this.recMinProt = value.target.value;
+  if (this.recMinProt >= 0 && this.recMaxProt > 0){
+    this.getProductsPm("plat");
+  } 
+} 
+
+onChangemaxProt(value: any) { 
+this.recMaxProt = value.target.value;
+if (this.recMinProt >= 0 && this.recMaxProt > 0){
+  this.getProductsPm("plat");
+}  
+} 
+
+onChangeminFib(value: any) { 
+  this.recMinFib = value.target.value;
+  if (this.recMinFib >= 0 && this.recMaxFib > 0){
+    this.getProductsPm("plat");
+  } 
+} 
+
+onChangemaxFib(value: any) { 
+this.recMaxFib = value.target.value;
+if (this.recMinFib >= 0 && this.recMaxFib > 0){
+  this.getProductsPm("plat");
+}  
+} 
+
   getProductsPm(catPlat: string){
       this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
         if(this.SugarClicked == true) {
@@ -93,61 +161,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  buttonSug(){
-    this.SugarClicked = !this.SugarClicked;
-  }
-  buttonFat(){
-    this.FatClicked = !this.FatClicked;
-  }
-  buttonSatu(){
-    this.SatuClicked = !this.SatuClicked;
-  }
-  buttonSod(){
-    this.SodiumClicked = !this.SodiumClicked;
-  }
-
-
-  compareSugar( a:Product, b:Product ) {
-    if ( a.pm.sug < b.pm.sug ){
-      return -1;
-    }
-    if ( a.pm.sug > b.pm.sug ){
-      return 1;
-    }
-    return 0;
-  }
-
-
-  compareFat( a:Product, b:Product ) {
-    if ( a.pm.fat < b.pm.fat ){
-      return -1;
-    }
-    if ( a.pm.fat > b.pm.fat ){
-      return 1;
-    }
-    return 0;
-  }
-
-  compareSatu( a:Product, b:Product ) {
-    if ( a.pm.satu < b.pm.satu ){
-      return -1;
-    }
-    if ( a.pm.satu > b.pm.satu ){
-      return 1;
-    }
-    return 0;
-  }
-
-  compareSod( a:Product, b:Product ) {
-    if ( a.pm.sod < b.pm.sod ){
-      return -1;
-    }
-    if ( a.pm.sod > b.pm.sod ){
-      return 1;
-    }
-    return 0;
-  }
-
+ 
 
 
 
@@ -162,50 +176,55 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
  getMinMax(catPlat: string){
   this.getProductsListPM(catPlat, this.minCalo, this.maxCalo, this.minCarb, this.maxCarb, this.minProt, this.maxProt, this.minFib, this.maxFib).subscribe(data => {
-    let maxCalo = 0;
-    let minCalo = 10000;
-    let maxCarb = 0;
-    let minCarb = 10000; 
-    let maxProt = 0;
-    let minProt = 10000; 
-    let maxFib = 0;
-    let minFib = 10000; 
     
     for (let i=0; i<data.length; i++){
-      if(data[i].pm.calo > maxCalo) {
-        maxCalo = data[i].pm.calo
+      if(data[i].pm.calo > this.recMaxCalo) {
+        this.recMaxCalo = data[i].pm.calo
       }
-      if(data[i].pm.calo < minCalo) {
-        minCalo = data[i].pm.calo
+      if(data[i].pm.calo < this.recMinCalo) {
+        this.recMinCalo = data[i].pm.calo
       }
-      if(data[i].pm.carb > maxCarb) {
-        maxCarb = data[i].pm.carb
+      if(data[i].pm.carb > this.recMaxCarb) {
+        this.recMaxCarb = data[i].pm.carb
       }
-      if(data[i].pm.carb < minCarb) {
-        minCarb = data[i].pm.carb
+      if(data[i].pm.carb < this.recMinCarb) {
+        this.recMinCarb = data[i].pm.carb
       }
-      if(data[i].pm.prot > maxProt) {
-        maxProt = data[i].pm.prot
+      if(data[i].pm.prot > this.recMaxProt) {
+        this.recMaxProt = data[i].pm.prot
       }
-      if(data[i].pm.prot < minProt) {
-        minProt = data[i].pm.prot
+      if(data[i].pm.prot < this.recMinProt) {
+        this.recMinProt = data[i].pm.prot
       }
-      if(data[i].pm.fib > maxFib) {
-        maxFib = data[i].pm.fib
+      if(data[i].pm.fib > this.recMaxFib) {
+        this.recMaxFib = data[i].pm.fib
       }
-      if(data[i].pm.fib < minFib) {
-        minFib = data[i].pm.fib
+      if(data[i].pm.fib < this.recMinFib) {
+        this.recMinFib = data[i].pm.fib
       }
-
     }
-    this.maximalCalo = maxCalo;
-    this.minimalCalo = minCalo;
-    this.maximalCarb = maxCarb;
-    this.minimalCarb = minCarb;
-    this.maximalProt = maxProt;
-    this.minimalProt = minProt;
-    this.maximalFib = maxFib;
-    this.minimalFib = minFib;
+
+    this.minimalCalo = this.recMinCalo;
+    this.maximalCalo = this.recMaxCalo;
+    this.minimalCarb = this.recMinCarb;
+    this.maximalCarb = this.recMaxCarb;
+    this.minimalProt = this.recMinProt;
+    this.maximalProt = this.recMaxProt;
+    this.minimalFib = this.recMinFib;
+    this.maximalFib = this.recMaxFib;
+
+  this.recMinCalo = 1000;
+this.recMaxCalo = 0;
+  this.recMinCarb = 1000;
+   this.recMaxCarb = 0;
+   this.recMinProt = 1000;
+    this.recMaxProt = 0;
+    this.recMinFib = 1000;
+     this.recMaxFib = 0; 
+
+
+
+    
   })
  }
 
@@ -228,5 +247,61 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       
  }
    
+
+ buttonSug(){
+  this.SugarClicked = !this.SugarClicked;
+}
+buttonFat(){
+  this.FatClicked = !this.FatClicked;
+}
+buttonSatu(){
+  this.SatuClicked = !this.SatuClicked;
+}
+buttonSod(){
+  this.SodiumClicked = !this.SodiumClicked;
+}
+
+
+compareSugar( a:Product, b:Product ) {
+  if ( a.pm.sug < b.pm.sug ){
+    return -1;
+  }
+  if ( a.pm.sug > b.pm.sug ){
+    return 1;
+  }
+  return 0;
+}
+
+
+compareFat( a:Product, b:Product ) {
+  if ( a.pm.fat < b.pm.fat ){
+    return -1;
+  }
+  if ( a.pm.fat > b.pm.fat ){
+    return 1;
+  }
+  return 0;
+}
+
+compareSatu( a:Product, b:Product ) {
+  if ( a.pm.satu < b.pm.satu ){
+    return -1;
+  }
+  if ( a.pm.satu > b.pm.satu ){
+    return 1;
+  }
+  return 0;
+}
+
+compareSod( a:Product, b:Product ) {
+  if ( a.pm.sod < b.pm.sod ){
+    return -1;
+  }
+  if ( a.pm.sod > b.pm.sod ){
+    return 1;
+  }
+  return 0;
+}
+
 
 }

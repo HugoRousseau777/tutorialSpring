@@ -32,34 +32,34 @@
 </form>
 <form (ngSubmit) = "getProductsPm('plat')" class="macroForm" >
     <h3>Nutriments pour 100g</h3>
-    <div>
+    <div class="interval">
         <h4>Calories</h4>
         <label for="minCalo">Au minimum :</label>
-        <input id="minCalo" type="number" name="minCalo" [placeholder]='minimalCalo'  [(ngModel)]="minCalo">
+        <input (change)="onChangeminCal($event)" id="minCalo" type="number" name="minCalo" [placeholder]="minimalCalo"  [(ngModel)]="minCalo">
         <label for="maxCalo">Au maximum :</label>
-        <input id="maxCalo" type="number" name="maxCalo" [placeholder]='maximalCalo' [(ngModel)]="maxCalo">
+        <input (change)="onChangemaxCal($event)" id="maxCalo" type="number" name="maxCalo" [placeholder]='maximalCalo' [(ngModel)]="maxCalo">
     </div>
-    <div>
+    <div class="interval">
         <h4>Glucides</h4>
         <label for="minCarb">Au minimum :</label>
-        <input id="minCarb" type="number" name="minCarb" [placeholder]='minimalCarb' [(ngModel)]="minCarb">
+        <input (change)="onChangeminCarb($event)" id="minCarb" type="number" name="minCarb" [placeholder]='minimalCarb' [(ngModel)]="minCarb">
         <label for="maxCarb">Au maximum :</label>
-        <input id="maxCarb" type="number" name="maxCarb" [placeholder]='maximalCarb' [(ngModel)]="maxCarb">
+        <input (change)="onChangemaxCarb($event)" id="maxCarb" type="number" name="maxCarb" [placeholder]='maximalCarb' [(ngModel)]="maxCarb">
     </div>
 
-    <div>
+    <div class="interval">
         <h4>Protéines</h4>
         <label for="minProt">Au minimum :</label>
-        <input id="minProt" type="number" name="minProt" [placeholder]='minimalProt' [(ngModel)]="minProt">
+        <input (change)="onChangeminProt($event)" id="minProt" type="number" name="minProt" [placeholder]='minimalProt' [(ngModel)]="minProt">
         <label for="maxProt">Au maximum :</label>
-        <input id="maxProt" type="number" name="maxProt" [placeholder]='maximalProt' [(ngModel)]="maxProt">
+        <input (change)="onChangemaxProt($event)" id="maxProt" type="number" name="maxProt" [placeholder]='maximalProt' [(ngModel)]="maxProt">
     </div>
-    <div>
+    <div class="interval">
         <h4>Fibres</h4>
         <label for="minFib">Au minimum :</label>
-        <input id="minFib" type="number" name="minFib" [placeholder]='minimalFib' [(ngModel)]="minFib">
+        <input (change)="onChangeminFib($event)" id="minFib" type="number" name="minFib" [placeholder]='minimalFib' [(ngModel)]="minFib">
         <label for="maxFib">Au maximum :</label>
-        <input id="maxFib" type="number" name="maxFib" [placeholder]='maximalFib' [(ngModel)]="maxFib">
+        <input (change)="onChangemaxFib($event)" id="maxFib" type="number" name="maxFib" [placeholder]='maximalFib' [(ngModel)]="maxFib">
     </div>
 
 
